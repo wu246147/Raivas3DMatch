@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "configurePresets": [{
+    "name": "local-release",
+    "displayName": "本机 MSVC x64 / Qt 5.15 / HALCON 23.05 / OpenCV 4.8",
+    "generator": "Visual Studio 17 2022",
+    "architecture": "x64",
+    "binaryDir": "${sourceDir}/build/local",
+    "cacheVariables": {
+      "CMAKE_PREFIX_PATH": "D:/Qt/5.15.2/msvc2019_64",
+      "OpenCV_DIR": "D:/opencv4.8.0/opencv/build/x64/vc16/lib",
+      "HALCON_ROOT": "C:/Program Files/MVTec/HALCON-23.05-Progress",
+      "SM_ENABLE_RAIVAS": "ON",
+      "RAIVAS_ROOT": "E:/code/project/OCR/ocr_alg_yolo_obb_opencv",
+      "RAIVAS_RUNTIME_DIR": "E:/code/project/OCR/ocr_alg_yolo_obb_opencv/build/codex-openvino-check/Release",
+      "SM_ENABLE_DEPTH_FILTER": "ON",
+      "SM_ENABLE_PCL_VIEWER": "ON",
+      "SM_BUILD_C_API": "ON",
+      "DEPTH_FILTER_ROOT": "E:/code/study/qt/pcl_rescale_ply",
+      "DEPTH_FILTER_RUNTIME_DIR": "E:/code/study/qt/pcl_rescale_ply/build/Desktop_Qt_5_15_2_MSVC2019_64bit-Release",
+      "PCL_DIR": "D:/Program Files/PCL 1.12.1/cmake"
+    }
+  }],
+  "buildPresets": [{"name": "local-release", "configurePreset": "local-release", "configuration": "Release", "jobs": 1}],
+  "testPresets": [{"name": "local-release", "configurePreset": "local-release", "configuration": "Release", "output": {"outputOnFailure": true}}]
+}

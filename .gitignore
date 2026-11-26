@@ -1,0 +1,5 @@
+/build/
+/.vs/
+*.user
+/bindings/csharp/bin/
+/bindings/csharp/obj/

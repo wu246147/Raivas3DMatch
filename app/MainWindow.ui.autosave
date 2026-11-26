@@ -1,0 +1,1479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1420</width>
+    <height>930</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SurfaceMatch · HALCON / OpenCV / PCL 算法测试</string>
+  </property>
+  <property name="styleSheet">
+   <string>QMainWindow{background:#eff3f8;} QGroupBox{font-weight:600;margin-top:10px;} QPushButton{padding:6px;} QLineEdit,QDoubleSpinBox,QSpinBox,QComboBox{min-height:24px;} QTabWidget::pane{border:1px solid #cbd5e1;} QTableWidget{background:white;}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="centralLayout">
+    <item>
+     <widget class="QSplitter" name="mainSplitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="sidebarWidget">
+       <property name="minimumSize">
+        <size>
+         <width>410</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>540</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="sidebarLayout">
+        <item>
+         <widget class="QLabel" name="titleLabel">
+          <property name="styleSheet">
+           <string>font-size:20px;color:#163c65;padding:8px;</string>
+          </property>
+          <property name="text">
+           <string>SURFACE MATCH
+相机、图像与点云匹配测试</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="parameterScroll">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="parameterContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>522</width>
+             <height>942</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="parameterLayout">
+            <item>
+             <widget class="QTabWidget" name="parameterTabs">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <widget class="QWidget" name="inputPage">
+               <attribute name="title">
+                <string>输入</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="inputLayout">
+                <item>
+                 <widget class="QGroupBox" name="cameraGroup">
+                  <property name="title">
+                   <string>相机内参 / 深度换算</string>
+                  </property>
+                  <layout class="QFormLayout" name="cameraForm">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="fxSpinLabel">
+                     <property name="text">
+                      <string>fx（像素）</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QDoubleSpinBox" name="fxSpin">
+                     <property name="decimals">
+                      <number>6</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000001000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>10000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="fySpinLabel">
+                     <property name="text">
+                      <string>fy（像素）</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QDoubleSpinBox" name="fySpin">
+                     <property name="decimals">
+                      <number>6</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000001000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>10000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="cxSpinLabel">
+                     <property name="text">
+                      <string>cx（像素）</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QDoubleSpinBox" name="cxSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>640.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="cySpinLabel">
+                     <property name="text">
+                      <string>cy（像素）</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QDoubleSpinBox" name="cySpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>480.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="scaleSpinLabel">
+                     <property name="text">
+                      <string>深度比例 ratio_z</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QDoubleSpinBox" name="scaleSpin">
+                     <property name="decimals">
+                      <number>9</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000000001000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="offsetSpinLabel">
+                     <property name="text">
+                      <string>深度偏移 offset_z</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QDoubleSpinBox" name="offsetSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>0.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="cameraNote">
+                  <property name="text">
+                   <string>z = raw × ratio_z + offset_z
+模型、深度、手眼与机器人平移须同一单位。
+2D / 深度须已配准、去畸变。</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="open2DButton">
+                  <property name="text">
+                   <string>打开 2D 图片</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="openDepthButton">
+                  <property name="text">
+                   <string>打开深度图（保持原始位宽）</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="previewCloudButton">
+                  <property name="text">
+                   <string>显示当前深度的 3D 点云</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="savePointCloudButton">
+                  <property name="toolTip">
+                   <string>按当前内参和 XYZ 范围保存完整深度点云，不使用显示抽样。</string>
+                  </property>
+                  <property name="text">
+                   <string>保存 3D 点云</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="boundsGroup">
+                  <property name="title">
+                   <string>相机坐标系点云范围</string>
+                  </property>
+                  <layout class="QFormLayout" name="boundsForm">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="xminSpinLabel">
+                     <property name="text">
+                      <string>X 最小</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QDoubleSpinBox" name="xminSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>-10000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="xmaxSpinLabel">
+                     <property name="text">
+                      <string>X 最大</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QDoubleSpinBox" name="xmaxSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>10000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="yminSpinLabel">
+                     <property name="text">
+                      <string>Y 最小</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QDoubleSpinBox" name="yminSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>-10000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="ymaxSpinLabel">
+                     <property name="text">
+                      <string>Y 最大</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QDoubleSpinBox" name="ymaxSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1000000000.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>10000.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="zminSpinLabel">
+                     <property name="text">
+                      <string>Z 最小</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QDoubleSpinBox" name="zminSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>0.001000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="zmaxSpinLabel">
+                     <property name="text">
+                      <string>Z 最大</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QDoubleSpinBox" name="zmaxSpin">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>1000000000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>9999.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="depthFilterGroup">
+                  <property name="title">
+                   <string>原生深度滤波</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="depthFilterLayout">
+                   <item>
+                    <widget class="QLabel" name="depthDirectoryLabel">
+                     <property name="text">
+                      <string>DLL 目录</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="depthRuntimeEdit"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="filterDepthButton">
+                     <property name="text">
+                      <string>调用 DepthRadiusFilter</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="depthFilterNote">
+                     <property name="text">
+                      <string>原 SDK 内部固定窗口 5、邻居数 4、深度差 1。</string>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="matchPage">
+               <attribute name="title">
+                <string>匹配</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="matchLayout">
+                <item>
+                 <layout class="QFormLayout" name="matchForm">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="accuracyComboLabel">
+                    <property name="text">
+                     <string>精度档位</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="accuracyCombo">
+                    <property name="currentIndex">
+                     <number>1</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>低</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>普通</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>高</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>很高</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="countSpinLabel">
+                    <property name="text">
+                     <string>最大匹配数量</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QDoubleSpinBox" name="countSpin">
+                    <property name="decimals">
+                     <number>0</number>
+                    </property>
+                    <property name="minimum">
+                     <double>1.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>10.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="scoreSpinLabel">
+                    <property name="text">
+                     <string>最低匹配分数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QDoubleSpinBox" name="scoreSpin">
+                    <property name="decimals">
+                     <number>4</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.600000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="overlapSpinLabel">
+                    <property name="text">
+                     <string>重叠相对距离</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QDoubleSpinBox" name="overlapSpin">
+                    <property name="decimals">
+                     <number>4</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>10.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.200000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="modelSmoothSpinLabel">
+                    <property name="text">
+                     <string>模型 MLS 邻居（0 关闭）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QDoubleSpinBox" name="modelSmoothSpin">
+                    <property name="decimals">
+                     <number>0</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="sceneSmoothSpinLabel">
+                    <property name="text">
+                     <string>场景 MLS 邻居（0 关闭）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QDoubleSpinBox" name="sceneSmoothSpin">
+                    <property name="decimals">
+                     <number>0</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="downsampleSpinLabel">
+                    <property name="text">
+                     <string>场景降采样间距（0 关闭）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QDoubleSpinBox" name="downsampleSpin">
+                    <property name="decimals">
+                     <number>6</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="expandSpinLabel">
+                    <property name="text">
+                     <string>ROI 扩张（像素）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QDoubleSpinBox" name="expandSpin">
+                    <property name="decimals">
+                     <number>0</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>20.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="angleSpinLabel">
+                    <property name="text">
+                     <string>OBB 方向容差（度）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QDoubleSpinBox" name="angleSpin">
+                    <property name="decimals">
+                     <number>4</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>180.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>45.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="fileScaleSpinLabel">
+                    <property name="text">
+                     <string>文件坐标 → 当前单位倍率</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QDoubleSpinBox" name="fileScaleSpin">
+                    <property name="decimals">
+                     <number>9</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000001000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000000000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>1.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QLabel" name="fileScaleNote">
+                  <property name="text">
+                   <string>PLY/OM3 常用 1；CAD 由米转毫米填 1000。
+SFM 忽略此倍率。</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="use2DCheck">
+                  <property name="text">
+                   <string>启用原生 2D 后端辅助匹配</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="browseModelButton">
+                  <property name="text">
+                   <string>选择 ONNX 模型</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="model2DEdit"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="runtimeDirectoryLabel">
+                  <property name="text">
+                   <string>RaiVas DLL 目录</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="runtimeEdit"/>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="detectorForm">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="driverComboLabel">
+                    <property name="text">
+                     <string>驱动</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="driverCombo">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>ONNX Runtime</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>OpenVINO</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="kindComboLabel">
+                    <property name="text">
+                     <string>算法</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="kindCombo">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>OBB</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Seg</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Det</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="gpuCheck">
+                  <property name="text">
+                   <string>使用 GPU</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="yolo26Check">
+                  <property name="text">
+                   <string>YOLO26</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="thresholdForm">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="threshold2DSpinLabel">
+                    <property name="text">
+                     <string>2D 置信度</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QDoubleSpinBox" name="threshold2DSpin">
+                    <property name="decimals">
+                     <number>4</number>
+                    </property>
+                    <property name="minimum">
+                     <double>0.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.500000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="attitudeSpinLabel">
+                    <property name="text">
+                     <string>类别（-1 全部）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="attitudeSpin">
+                    <property name="minimum">
+                     <number>-1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>99999</number>
+                    </property>
+                    <property name="value">
+                     <number>-1</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="loadModelButton">
+                  <property name="text">
+                   <string>加载 3D 模型 / SFM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="showModelButton">
+                  <property name="toolTip">
+                   <string>在三维视图中单独显示已加载的模板，坐标保持为模板坐标系。</string>
+                  </property>
+                  <property name="text">
+                   <string>显示 3D 模型</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="saveModelButton">
+                  <property name="text">
+                   <string>保存 SFM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="modelStatusLabel">
+                  <property name="text">
+                   <string>尚未加载模型</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="graspPage">
+               <attribute name="title">
+                <string>抓手偏移</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="graspLayout">
+                <item>
+                 <widget class="QLabel" name="graspNote">
+                  <property name="text">
+                   <string>输入：x,y,z,rx,ry,rz（度，HALCON abg）
+输出基座系相对偏移 D：新 TCP = D × 参考 TCP。
+固定相机：标定为相机到基座，机器人位姿不填；眼在手上：标定为相机到末端，填写拍照末端到基座。
+匹配输入须为相机系目标偏移，模板保留参考相机坐标。</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="eyeInHandCheck">
+                  <property name="text">
+                   <string>眼在手上（使用拍照时机器人位姿）</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="graspForm">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="handEyeEditLabel">
+                    <property name="text">
+                     <string>手眼标定位姿</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="handEyeEdit">
+                    <property name="text">
+                     <string>0,0,0,0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="robotEditLabel">
+                    <property name="text">
+                     <string>拍照末端 → 基座</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="robotEdit">
+                    <property name="text">
+                     <string>0,0,0,0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="taughtModelEditLabel">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>示教模板 → 基座</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="taughtModelEdit">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>0,0,0,0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="taughtTcpEditLabel">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>示教 TCP → 基座</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="taughtTcpEdit">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>0,0,0,0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="referenceEditLabel">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>偏移基准 → 基座</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="referenceEdit">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>0,0,0,0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="symmetryCheck">
+                  <property name="visible">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>去除局部 Z 对称旋转并保持中心位置</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="graspOutputForm">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="centerEditLabel">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>模板中心 XYZ</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="centerEdit">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>0,0,0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="offsetModeComboLabel">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>输出方式</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="offsetModeCombo">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>绝对 TCP</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>发那科：完整矩阵偏移</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>那智：XYZ 位置差</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="transformButton">
+                  <property name="text">
+                   <string>转换所选候选 → 抓手偏移</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="graspResultLabel">
+                  <property name="text">
+                   <string>选择候选后转换；这里只计算，不连接机器人。</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                  <property name="textInteractionFlags">
+                   <set>Qt::TextSelectableByMouse</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="runButton">
+          <property name="styleSheet">
+           <string>background:#176aa5;color:white;font-size:17px;font-weight:600;padding:10px;</string>
+          </property>
+          <property name="text">
+           <string>运行 runModel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="settingsButtonsLayout">
+          <item>
+           <widget class="QPushButton" name="importSettingsButton">
+            <property name="text">
+             <string>导入配置 JSON</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="exportSettingsButton">
+            <property name="text">
+             <string>导出配置 JSON</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exportResultsButton">
+          <property name="text">
+           <string>导出匹配 / 抓手结果</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="resultsWidget">
+       <layout class="QVBoxLayout" name="resultsLayout">
+        <item>
+         <widget class="QTabWidget" name="viewTabs">
+          <widget class="QWidget" name="imagePage">
+           <attribute name="title">
+            <string>2D 原图</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="imagePageLayout">
+            <item>
+             <widget class="QLabel" name="imageView">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>左键单击图像查看原图坐标与像素值，坐标从 0 开始。</string>
+              </property>
+              <property name="styleSheet">
+               <string>background:#142334;color:#c8d7e8;</string>
+              </property>
+              <property name="text">
+               <string>尚无图像</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="imagePixelValue">
+              <property name="text">
+               <string>左键点击图像，查看像素坐标与灰度 / BGR 值。</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="depthPage">
+           <attribute name="title">
+            <string>深度图（仅显示归一化）</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="depthPageLayout">
+            <item>
+             <widget class="QLabel" name="depthView">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>左键单击查看原始深度及换算深度，不读取伪彩色显示值；坐标从 0 开始。</string>
+              </property>
+              <property name="styleSheet">
+               <string>background:#142334;color:#c8d7e8;</string>
+              </property>
+              <property name="text">
+               <string>尚无图像</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="depthPixelValue">
+              <property name="text">
+               <string>左键点击深度图，查看原始深度与换算后的 Z 值。</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="projectionPage">
+           <attribute name="title">
+            <string>runModel 结果投影</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="projectionPageLayout">
+            <item>
+             <widget class="QLabel" name="resultView">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string>background:#142334;color:#c8d7e8;</string>
+              </property>
+              <property name="text">
+               <string>尚无图像</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="cloudPage">
+           <attribute name="title">
+            <string>3D 点云结果</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="cloudPageLayout">
+            <item>
+             <layout class="QHBoxLayout" name="cloudToolsLayout">
+              <item>
+               <widget class="QCheckBox" name="sceneVisibleCheck">
+                <property name="text">
+                 <string>灰色场景</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="matchesVisibleCheck">
+                <property name="text">
+                 <string>匹配模型</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="pointSizeLabel">
+                <property name="text">
+                 <string>点大小</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="pointSizeSpin">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>8</number>
+                </property>
+                <property name="value">
+                 <number>2</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="resetCameraButton">
+                <property name="text">
+                 <string>重置视角</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="saveCloudButton">
+                <property name="text">
+                 <string>保存截图</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="cloudHostLayout">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="cloudPlaceholder">
+                <property name="text">
+                 <string>PCL / VTK 点云窗口由程序运行时载入。</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="cloudInfoLabel">
+              <property name="text">
+               <string>尚未加载点云</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="cloudHelpLabel">
+              <property name="text">
+               <string>左键拖动旋转 · 中键拖动平移 · 滚轮 / 右键缩放 · 选择表格候选高亮</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="resultTable">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>220</height>
+           </size>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="rowCount">
+           <number>0</number>
+          </property>
+          <property name="columnCount">
+           <number>8</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Score</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Z</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Rx</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Ry</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Rz</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>2D 弧度</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="logEdit">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="maximumBlockCount">
+           <number>500</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
